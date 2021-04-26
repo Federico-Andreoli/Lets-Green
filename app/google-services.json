@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "891320659183",
+    "project_id": "let-s-green-a17c8",
+    "storage_bucket": "let-s-green-a17c8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891320659183:android:192362ffeef98061933f1a",
+        "android_client_info": {
+          "package_name": "it.unimib.letsgreen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891320659183-os10j1qtak3cukma1ogh06n7tbp6bj2q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA6ZxRYgkc6NBC8XZZMANNFiz44dzMusc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891320659183-os10j1qtak3cukma1ogh06n7tbp6bj2q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
