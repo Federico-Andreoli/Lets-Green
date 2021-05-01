@@ -1,0 +1,84 @@
+package it.unimib.letsgreen.ui.login;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+
+import android.os.Bundle;
+import android.util.Patterns;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.regex.Pattern;
+
+import it.unimib.letsgreen.R;
+
+public class RegisterActivity extends AppCompatActivity {
+
+    FirebaseAuth mAuth;
+    FirebaseFirestore firestore;
+    CollectionReference reference;
+    EditText userEmail, userPassword, confirmPassword;
+    Button registerUser;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register);
+
+        mAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
+        userEmail = findViewById(R.id.registerMail);
+        userPassword = findViewById(R.id.registerPassword);
+        confirmPassword = findViewById(R.id.confirmPassword);
+        registerUser= findViewById(R.id.register);
+        registerUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startUserRegistration();/*richiama metodo per la registrazione dei dati*/
+            }
+        });
+    }
+
+    private void startUserRegistration() {
+        String email=userEmail.getText().toString().trim(); /*creazione della stringa da text box */
+        String password=userPassword.getText().toString().trim();
+        String password2=confirmPassword.getText().toString().trim();
+
+        if(email.isEmpty()){  /*controllo che la mail non sia vuota*/
+            Toast.makeText(this, "inserisci mail", Toast.LENGTH_SHORT).show();
+        }else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){ /*verifica se la mail è ben formulata*/
+            Toast.makeText(this, "inserire un'email valida", Toast.LENGTH_SHORT).show();
+        }else if(password.isEmpty()){   /*verifica che la password non sia vuota*/
+            Toast.makeText(this, "inserisci una password valida", Toast.LENGTH_SHORT).show();
+        }else if(password.length()<6){   /*verifica che la password sia almeno di 6 caratteri*/
+            Toast.makeText(this, "password troppo corta", Toast.LENGTH_SHORT).show();
+        }else if(password.compareTo(password2)!=0){ /*verifica che le password sono uguali*/
+            Toast.makeText(this, "le password sono diverse", Toast.LENGTH_SHORT).show();
+        }else{                                      /*inserimento credenziali firestore*/
+            mAuth.createUserWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                @Override
+                public void onSuccess(AuthResult authResult) {
+                    /*inserire dati*/
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(RegisterActivity.this, "impossibile registrarsi", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            });
+        }
+
+    }
+}
