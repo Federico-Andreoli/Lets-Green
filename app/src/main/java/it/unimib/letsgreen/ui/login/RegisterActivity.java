@@ -16,9 +16,13 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import it.unimib.letsgreen.R;
@@ -66,10 +70,27 @@ public class RegisterActivity extends AppCompatActivity {
         }else if(password.compareTo(password2)!=0){ /*verifica che le password sono uguali*/
             Toast.makeText(this, "le password sono diverse", Toast.LENGTH_SHORT).show();
         }else{                                      /*inserimento credenziali firestore*/
-            mAuth.createUserWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+            mAuth.createUserWithEmailAndPassword(email,password).addOnSuccessListener(new OnSuccessListener<AuthResult> () {
                 @Override
                 public void onSuccess(AuthResult authResult) {
-                    /*inserire dati*/
+                    FirebaseUser user= authResult.getUser();
+                    assert user != null;
+                    reference = firestore.collection(user.getUid());
+                    Map<String, String> userData=new HashMap<>();
+                    userData.put ("email", email );
+                    reference.add(userData).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        @Override
+                        public void onSuccess(DocumentReference documentReference) {
+                            Toast.makeText(RegisterActivity.this, "user regstrato con successo", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(RegisterActivity.this, "mail non registrata", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
