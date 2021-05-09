@@ -12,12 +12,14 @@ import it.unimib.letsgreen.ui.login.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
     private Button nbuttom;
+    private Button nbuttom2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         nbuttom = findViewById(R.id.button);
+
         nbuttom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
