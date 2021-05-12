@@ -16,7 +16,9 @@
     <string name="title_card_pollution">CALCOLA CO2</string>
     <string name="title_card_plant">PIANTA UNA PIANTA</string>
     <string name="description_card_plant">descrizione di cosa fa</string>
+    <string name="description_card_pollution">descrizione di cosa fa</string>
     <string name="name_icon_catalog">catalogo</string>
     <string name="name_icon_home">home</string>
     <string name="name_icon_actions">attività</string>
+    <string name="name_icon_settings">impostazioni</string>
 </resources>

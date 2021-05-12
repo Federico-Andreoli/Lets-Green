@@ -15,4 +15,9 @@
         android:enabled="true"
         android:icon="@drawable/fiore"
         android:title="@string/name_icon_catalog"/>
+    <item
+        android:id="@+id/settings"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="@string/name_icon_settings"/>
 </menu>
