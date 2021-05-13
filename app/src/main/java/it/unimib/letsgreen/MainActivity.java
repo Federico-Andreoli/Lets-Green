@@ -18,34 +18,24 @@ import it.unimib.letsgreen.ui.Actions;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private Button nbuttom;
     private BottomNavigationView NavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        nbuttom = findViewById(R.id.button);
         NavigationView= findViewById(R.id.bottom_navigation);
         NavigationView.setOnNavigationItemSelectedListener(listener);
 
+        Fragment home= Home.newInstance();
+        FragmentManager fm= getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.frame_layout, home);
+        ft.addToBackStack("home");
+        ft.commit();
 
-        nbuttom.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "premuto bottone" );
-                    Actions actions= Actions.newInstance();
-                    FragmentManager fm= getSupportFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    ft.add(R.id.frame_layout, actions);
-                    ft.addToBackStack("attività");
-                    ft.commit();
-
-
-
-            }
-        });
     }
+
     private final BottomNavigationView.OnNavigationItemSelectedListener listener= new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected( MenuItem item) {
@@ -56,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.home:
-
+                    selected_fragment =Home.newInstance();
                     break;
 
                 case R.id.catalogo:
