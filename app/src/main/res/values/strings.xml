@@ -21,4 +21,6 @@
     <string name="name_icon_home">home</string>
     <string name="name_icon_actions">attività</string>
     <string name="name_icon_settings">impostazioni</string>
+    <string name="profile">profilo</string>
+    <string name="title">Lets-green</string>
 </resources>

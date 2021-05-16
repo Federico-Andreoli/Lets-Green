@@ -46,10 +46,6 @@ public class Actions extends Fragment {
                 Log.d(TAG, "funziona tutto, ora puoi piangere 2");
             }
         });
-
         return view;
     }
-
-
-    
 }
