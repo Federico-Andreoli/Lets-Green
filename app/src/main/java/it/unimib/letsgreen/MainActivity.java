@@ -6,14 +6,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.transition.Scene;
+import android.transition.Transition;
+import android.transition.TransitionInflater;
+import android.transition.TransitionManager;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import it.unimib.letsgreen.ui.Actions;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,11 +27,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         NavigationView= findViewById(R.id.bottom_navigation);
         NavigationView.setOnNavigationItemSelectedListener(listener);
+        View sceneRoot =findViewById(R.id.scene_root);
+
+
 
         Fragment home= Home.newInstance();
         FragmentManager fm= getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.frame_layout, home);
+        ft.add(R.id.scene_root, home);
         ft.addToBackStack("home");
         ft.commit();
 
@@ -41,9 +45,6 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected( MenuItem item) {
             Fragment selected_fragment =null;
             switch (item.getItemId()){
-                case R.id.attività:
-                    selected_fragment =Actions.newInstance();
-                    break;
 
                 case R.id.home:
                     selected_fragment =Home.newInstance();
@@ -60,9 +61,10 @@ public class MainActivity extends AppCompatActivity {
             if (selected_fragment != null) {
                 FragmentManager fm= getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                ft.replace(R.id.frame_layout, selected_fragment);
+                ft.replace(R.id.scene_root, selected_fragment);
                 ft.addToBackStack("attività");
                 ft.commit();
+
             }
             return true;
         }

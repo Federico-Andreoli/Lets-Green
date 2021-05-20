@@ -8,8 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import it.unimib.letsgreen.ui.Actions;
-
 
 public class Catalogo extends Fragment {
     public static Catalogo newInstance() {

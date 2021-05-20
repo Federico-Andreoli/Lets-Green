@@ -6,11 +6,6 @@
         android:icon="@drawable/ic_baseline_home_24"
         android:title="@string/name_icon_home"/>
     <item
-        android:id="@+id/attività"
-        android:enabled="true"
-        android:icon="@drawable/ic_baseline_dashboard_24"
-        android:title="@string/name_icon_actions"/>
-    <item
         android:id="@+id/catalogo"
         android:enabled="true"
         android:icon="@drawable/fiore"
