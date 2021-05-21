@@ -18,9 +18,15 @@ import it.unimib.letsgreen.R;
 public class CatalogRecyclerViewAdapter extends RecyclerView.Adapter<CatalogRecyclerViewAdapter.CatalogViewHolder> {
 
     private List<String> stringList;
+    private OnItemClickListener listener;
 
-    public CatalogRecyclerViewAdapter(List<String> stringList) {
+    public interface OnItemClickListener {
+        void onItemClick(String s);
+    }
+
+    public CatalogRecyclerViewAdapter(List<String> stringList, OnItemClickListener onItemClickListener) {
         this.stringList = stringList;
+        listener = onItemClickListener;
     }
 
     @NonNull
@@ -57,6 +63,12 @@ public class CatalogRecyclerViewAdapter extends RecyclerView.Adapter<CatalogRecy
 
         public void bind(String s) {
             nameTextView.setText(s);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(s);
+                }
+            });
         }
     }
 }

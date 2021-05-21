@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -39,7 +40,12 @@ public class Catalogo extends Fragment {
         }
 
         RecyclerView recyclerView = view.findViewById(R.id.catalogo_view);
-        CatalogRecyclerViewAdapter catalogRecyclerViewAdapter = new CatalogRecyclerViewAdapter(stringList);
+        CatalogRecyclerViewAdapter catalogRecyclerViewAdapter = new CatalogRecyclerViewAdapter(stringList, new CatalogRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(String s) {
+                Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
+            }
+        });
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         recyclerView.setAdapter(catalogRecyclerViewAdapter);
 
