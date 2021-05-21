@@ -1,4 +1,4 @@
-package it.unimib.letsgreen;
+package it.unimib.letsgreen.ui.catalog;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import it.unimib.letsgreen.R;
 
 
 public class Catalogo extends Fragment {

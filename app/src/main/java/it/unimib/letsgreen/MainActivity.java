@@ -6,15 +6,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.transition.Scene;
-import android.transition.Transition;
-import android.transition.TransitionInflater;
-import android.transition.TransitionManager;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import it.unimib.letsgreen.ui.catalog.Catalogo;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
 
                 case R.id.catalogo:
-                    selected_fragment =Catalogo.newInstance();
+                    selected_fragment = Catalogo.newInstance();
                     break;
 
                 case R.id.settings:
