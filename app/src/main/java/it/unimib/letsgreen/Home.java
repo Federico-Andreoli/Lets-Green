@@ -1,18 +1,19 @@
 package it.unimib.letsgreen;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import com.google.android.material.card.MaterialCardView;
 
 
 public class Home extends Fragment {
+
+
 
     public static Home newInstance() {
 
@@ -44,7 +45,9 @@ public class Home extends Fragment {
                 Log.d(TAG, "funziona tutto, ora puoi piangere 2");
             }
         });
+
         return view;
     }
+
 
 }

@@ -1,46 +1,63 @@
 package it.unimib.letsgreen;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.os.Bundle;
-import android.transition.Scene;
-import android.transition.Transition;
-import android.transition.TransitionInflater;
-import android.transition.TransitionManager;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import it.unimib.letsgreen.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
+    /*private static final String TAG = "MainActivity";
+     private MaterialToolbar Toolbar;*/
     private BottomNavigationView NavigationView;
+    private MaterialToolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding mBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = mBinding.getRoot();
+        setContentView(view);
+
+        /*NavigationView = findViewById(R.id.bottom_navigation);*/
+
+        /*
+        Toolbar=findViewById(R.id.topAppBar);
         NavigationView= findViewById(R.id.bottom_navigation);
-        NavigationView.setOnNavigationItemSelectedListener(listener);
-        View sceneRoot =findViewById(R.id.scene_root);
+        NavigationView.setOnNavigationItemSelectedListener(listenerBottomNavigationView);*/
 
 
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.home, R.id.catalogo, R.id.settings).build();
 
-        Fragment home= Home.newInstance();
+        NavHostFragment navHostFragment =
+                (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment1);
+        NavController navController = navHostFragment.getNavController();
+        NavigationUI.setupWithNavController(mBinding.topAppBar, navController);
+
+
+        /*NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);*/
+
+        /*Fragment home= Home.newInstance();
         FragmentManager fm= getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.scene_root, home);
         ft.addToBackStack("home");
         ft.commit();
 
     }
 
-    private final BottomNavigationView.OnNavigationItemSelectedListener listener= new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+   private final BottomNavigationView.OnNavigationItemSelectedListener listenerBottomNavigationView= new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected( MenuItem item) {
             Fragment selected_fragment =null;
@@ -68,5 +85,9 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         }
-    };
+    };*/
+
+
+    }
 }
+
